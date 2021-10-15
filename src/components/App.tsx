@@ -1,4 +1,4 @@
-import Area from './Area'
+import Area from './WeatherWarning'
 
 function App() {
   return (
