@@ -1,4 +1,4 @@
-function Area() {
+function WeatherWarning() {
   return (
     <div className="Area">
       <h1>Weather Warning Details</h1> <div>details...</div>
@@ -6,4 +6,4 @@ function Area() {
   )
 }
 
-export default Area
+export default WeatherWarning

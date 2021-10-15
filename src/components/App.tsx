@@ -1,9 +1,9 @@
-import Area from './WeatherWarning'
+import WeatherWarning from './WeatherWarning'
 
 function App() {
   return (
     <div className="App">
-      <Area />
+      <WeatherWarning />
     </div>
   )
 }
