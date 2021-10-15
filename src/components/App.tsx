@@ -1,9 +1,9 @@
-import WeatherWarning from './WeatherWarning'
+import { WeatherWarningContainer } from './WeatherWarningContainer'
 
 function App() {
   return (
     <div className="App">
-      <WeatherWarning />
+      <WeatherWarningContainer />
     </div>
   )
 }

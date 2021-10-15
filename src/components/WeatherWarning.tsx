@@ -1,9 +1,6 @@
-function WeatherWarning() {
-  return (
-    <div className="Area">
-      <h1>Weather Warning Details</h1> <div>details...</div>
-    </div>
-  )
-}
+import React from 'react'
+import { WeatherWarningProps } from './WeatherWarningContainer'
 
-export default WeatherWarning
+export const WeatherWarning: React.FunctionComponent<WeatherWarningProps> = (
+  props,
+) => <div>{props}</div>
