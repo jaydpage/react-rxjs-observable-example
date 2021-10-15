@@ -12,6 +12,16 @@ const mapDispatchToProps = (dispatch: any) => {
     loadWeatherWarnings: () => {
       dispatch(WeatherWarningActionCreators.fetchWeatherWarnings.request())
     },
+    loadSuccess: () => {
+      dispatch(
+        WeatherWarningActionCreators.fetchWeatherWarnings.success([
+          {
+            description: 'some weather warning description!',
+            effective: new Date().toDateString(),
+          },
+        ]),
+      )
+    },
   }
 }
 

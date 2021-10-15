@@ -5,9 +5,14 @@ import { WeatherWarning } from '../../interfaces/WeatherWarning'
 export interface WeatherWarningState {
   warnings: WeatherWarning[]
   loading: boolean
+  loaded: boolean
 }
 
-const initialState: WeatherWarningState = { warnings: [], loading: false }
+const initialState: WeatherWarningState = {
+  warnings: [],
+  loading: false,
+  loaded: false,
+}
 
 export function weatherWarnings(
   state: WeatherWarningState = initialState,
@@ -22,13 +27,9 @@ export function weatherWarnings(
     case getType(ActionCreators.fetchWeatherWarnings.success):
       return {
         ...state,
-        warnings: [
-          {
-            description: 'some weather warning description!',
-            effective: new Date().toDateString(),
-          },
-        ],
+        warnings: [...action.payload],
         loading: false,
+        loaded: true,
       }
     default:
       return state
