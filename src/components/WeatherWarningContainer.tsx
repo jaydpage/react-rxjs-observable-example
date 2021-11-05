@@ -1,26 +1,16 @@
 import { connect } from 'react-redux'
-import { AppState } from '../store/reducers'
-import { ActionCreators as WeatherWarningActionCreators } from '../store/weather-warnings'
+import { fetchWeatherWarnings } from '../store/actions'
+import { RootState } from '../store/root-reducer'
 import { WeatherWarning } from './WeatherWarning'
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: RootState) => ({
   ...state.weatherWarnings,
 })
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     loadWeatherWarnings: () => {
-      dispatch(WeatherWarningActionCreators.fetchWeatherWarnings.request())
-    },
-    loadSuccess: () => {
-      dispatch(
-        WeatherWarningActionCreators.fetchWeatherWarnings.success([
-          {
-            description: 'some weather warning description!',
-            effective: new Date().toDateString(),
-          },
-        ]),
-      )
+      dispatch(fetchWeatherWarnings.request())
     },
   }
 }

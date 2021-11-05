@@ -1,6 +1,6 @@
 import { getType } from 'typesafe-actions'
-import { ActionCreators } from '.'
 import { WeatherWarning } from '../../interfaces/WeatherWarning'
+import { fetchWeatherWarnings } from '../actions'
 
 export interface WeatherWarningState {
   warnings: WeatherWarning[]
@@ -16,18 +16,19 @@ const initialState: WeatherWarningState = {
 
 export function weatherWarnings(
   state: WeatherWarningState = initialState,
-  action: any,
+  action: { type: any; payload: any },
 ): WeatherWarningState {
   switch (action.type) {
-    case getType(ActionCreators.fetchWeatherWarnings.request):
+    case getType(fetchWeatherWarnings.request):
       return {
         ...state,
         loading: true,
       }
-    case getType(ActionCreators.fetchWeatherWarnings.success):
+    case getType(fetchWeatherWarnings.success):
+      console.log('action.payload', action.payload)
       return {
         ...state,
-        warnings: [...action.payload],
+        warnings: action.payload,
         loading: false,
         loaded: true,
       }

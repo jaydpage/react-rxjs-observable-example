@@ -1,19 +1,25 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { createEpicMiddleware } from 'redux-observable'
+import { RootAction } from './root-action'
+import { rootEpic } from './root-epic'
+import { rootReducer, RootState } from './root-reducer'
 
-import { AppState, reducers } from './reducers'
+const store = configureStore()
 
 function configureStore() {
-  const middlewares: any[] = []
-  const middlewareEnhancer = applyMiddleware(...middlewares)
+  const epicMiddleware = createEpicMiddleware<RootAction, RootAction, RootState>()
+  const middleWares: any[] = [epicMiddleware]
+  const middlewareEnhancer = applyMiddleware(...middleWares)
 
   const enhancers = [middlewareEnhancer]
   const composedEnhancers = composeWithDevTools(...enhancers)
 
-  const rootReducer = combineReducers<AppState>(reducers)
-  return createStore(rootReducer, composedEnhancers)
-}
+  const store = createStore(rootReducer, composedEnhancers)
 
-const store = configureStore()
+  epicMiddleware.run(rootEpic)
+
+  return store
+}
 
 export default store

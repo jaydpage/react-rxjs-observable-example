@@ -7,12 +7,8 @@ export enum Actions {
   fetchWeatherWarningsError = 'FETCH_WEATHER_WARNINGS_ERROR',
 }
 
-export const ActionCreators = {
-  fetchWeatherWarnings: createAsyncAction(
-    Actions.fetchWeatherWarnings,
-    Actions.fetchWeatherWarningsSuccess,
-    Actions.fetchWeatherWarningsError,
-  )<void, WeatherWarning[], Error>(),
-}
-
-export type Action = typeof ActionCreators[keyof typeof ActionCreators]
+export const fetchWeatherWarnings = createAsyncAction(
+  Actions.fetchWeatherWarnings,
+  Actions.fetchWeatherWarningsSuccess,
+  Actions.fetchWeatherWarningsError,
+)<void, WeatherWarning[], Error>()

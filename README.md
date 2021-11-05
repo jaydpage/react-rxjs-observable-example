@@ -11,3 +11,13 @@
 
 - Show a message on screen when the call to the weather api fails
 - Add the ability to show multiple weather componets, each showing weather from a different area
+
+### UI Testing
+
+https://enzymejs.github.io/enzyme/docs/api/
+
+- Validate static text on a component
+- Validate dynamic text on a component based on props
+- Validate a element/component is shown conditionally based on props
+- Click a button and validate expected outcome
+- Write a snapshot test to validate the display of a component and its children given specific props
