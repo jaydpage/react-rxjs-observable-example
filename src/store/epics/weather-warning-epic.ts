@@ -1,25 +1,14 @@
-import { filter, map, of, switchMap } from 'rxjs'
+import { filter, map, switchMap } from 'rxjs'
 import { isActionOf } from 'typesafe-actions'
 import { WeatherWarning } from '../../interfaces/WeatherWarning'
+import { WeatherWarningService } from '../../services'
 import { fetchWeatherWarnings } from '../actions'
 import { RootEpic } from '../root-epic'
 
-export const fetchWeatherWarnings$: RootEpic = (
-  action$: any,
-  _,
-  state$: any,
-) => {
-  console.log('fetch weather warnings')
+export const fetchWeatherWarnings$: RootEpic = (action$: any, state$: any) => {
   return action$.pipe(
     filter(isActionOf(fetchWeatherWarnings.request)),
-    switchMap(() => {
-      return of([
-        {
-          description: 'some weather warning description!',
-          effective: new Date().toDateString(),
-        },
-      ])
-    }),
+    switchMap(() => new WeatherWarningService().getWeather()),
     map((value: WeatherWarning[]) => fetchWeatherWarnings.success(value)),
   )
 }

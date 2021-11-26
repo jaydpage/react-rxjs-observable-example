@@ -4,15 +4,18 @@ export class WeatherWarningService {
   async getWeather(): Promise<WeatherWarning[]> {
     const result = await fetch('https://api.weather.gov/alerts/active?area=FL')
     const warnings = await result.json()
+    console.log('warnings', warnings)
     return this.mapToWeatherWarnings(warnings)
   }
 
   private mapToWeatherWarnings(result: any): WeatherWarning[] {
-    return result.features.map(({ description, effective }: any) => {
-      return {
-        description,
-        effective,
-      }
-    })
+    return result.features.map(
+      ({ properties: { description, effective } }: any) => {
+        return {
+          description,
+          effective,
+        }
+      },
+    )
   }
 }
