@@ -27,10 +27,10 @@ describe('weather-warning-epic', () => {
     createTypedMockClass(WeatherWarningService).mockImplementation(
       () => fakeWeatherWarningService,
     )
-    const action = ActionsObservable.from([fetchWeatherWarnings.request()])
-    const state = of({}) as any
+    const action$ = ActionsObservable.from([fetchWeatherWarnings.request()])
+    const state$ = of({}) as any
     // Act
-    const epic$ = fetchWeatherWarnings$(action, state, [])
+    const epic$ = fetchWeatherWarnings$(action$, state$, [])
     await lastValueFrom(epic$.pipe(toArray()))
     // Assert
     expect(fetchWeatherWarningsSpy).toHaveBeenCalledWith(warning)

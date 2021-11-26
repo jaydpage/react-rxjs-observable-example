@@ -25,7 +25,6 @@ export function weatherWarnings(
         loading: true,
       }
     case getType(fetchWeatherWarnings.success):
-      console.log('action.payload', action.payload)
       return {
         ...state,
         warnings: action.payload,
